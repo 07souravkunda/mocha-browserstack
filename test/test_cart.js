@@ -1,16 +1,16 @@
 var assert = require('assert');
 const { Builder, By, Capabilities, until } = require("selenium-webdriver");
+require('chromedriver');
 
 var buildDriver = function() {
-  return new Builder().
-    usingServer('http://localhost:4444/wd/hub').
-    withCapabilities(Capabilities.chrome()).
-    build();
+  return new Builder()
+              .forBrowser("chrome")
+              .build();
 };
 
 describe('BStack\'s Cart Functionality', async function() {
   this.timeout(0);
-  var driver;
+  let driver;
 
   before(function() {
     driver = buildDriver();
